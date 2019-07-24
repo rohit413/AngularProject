@@ -4,9 +4,25 @@
 <input type="text" class="form-control" [(ngModel)]="serverName"> 
 <!-- // $event is kind of reserved variable name and you can name it accordind to you but watever vaiable is set here should be pass same as typescript model // -->
 <br>
-<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Sever</button>
+<div class="btn-toolbar">
+    <button class="btn btn-primary" 
+    [disabled]="!allowNewServer" 
+    (click)="onCreateServer()">Add Sever</button>
+    
+    <button
+    class="btn btn-primary" 
+    [disabled]="serverName ===''"
+    (click)="serverName= ''">Reset ServerName</button>
+
+</div>
 <!--<p>{{ allowNewServer}}</p>-->
 <!-- <p [innerText]="allowNewServer"></p> 
-<p>{{ serverName }}</p>-->
-<p>{{ serverCreationStatus }}</p>
+<p>{{ serverName }}</p>
+<p>{{ serverCreationStatus }}</p>-->
+<br>
+<p *ngIf="serverCreated; else noServer">Server Was Created, Server Name is {{serverName}} </p>
+<ng-template #noServer>
+    <p>No server was created! </p> 
+</ng-template>
+<app-server></app-server>
 <app-server></app-server>
